@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
 
 def main(request):
     content = {
@@ -26,7 +25,7 @@ def products(request):
 
 def contacts(request):
     content = {
-        'title': 'Контакты'
+        'title': 'Контакты',
     }
     return render(request, 'mainapp/contact.html', content)
 
@@ -105,6 +104,3 @@ def products_classic(request):
     }
     return render(request, 'mainapp/products.html', content)
 
-
-def contacts(request):
-    return render(request, 'mainapp/contact.html')
