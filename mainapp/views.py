@@ -104,3 +104,7 @@ def products_classic(request):
         'links_menu': links_menu
     }
     return render(request, 'mainapp/products.html', content)
+
+
+def contacts(request):
+    return render(request, 'mainapp/contact.html')
