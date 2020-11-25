@@ -1,5 +1,11 @@
 from django.shortcuts import render
+import json
 
+CONTACTS = []
+
+for i in range(3):
+    with open(f'mainapp/templates/mainapp/contacts_data/{i+1}.json', 'r') as contact_file:
+        CONTACTS.append(json.load(contact_file))
 
 def main(request):
     content = {
@@ -26,6 +32,7 @@ def products(request):
 def contacts(request):
     content = {
         'title': 'Контакты',
+        'contacts': CONTACTS
     }
     return render(request, 'mainapp/contact.html', content)
 

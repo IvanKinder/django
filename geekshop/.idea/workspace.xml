@@ -20,12 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b7d697c-cc4d-42f4-9e29-cda1e77e67d9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/templates/mainapp/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/mainapp/contact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/templates/mainapp/contacts_data/3.json" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/mainapp/contacts_data/3.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/templates/mainapp/includes/inc_contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/mainapp/includes/inc_contacts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +35,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1klqjZa1WRarapIdzIfspjzsntX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -91,8 +86,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606285662601</updated>
-      <workItem from="1606285670504" duration="11596000" />
-      <workItem from="1606299929179" duration="1717000" />
+      <workItem from="1606285670504" duration="11898000" />
+      <workItem from="1606298131143" duration="801000" />
     </task>
     <servers />
   </component>
