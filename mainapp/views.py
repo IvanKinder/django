@@ -18,9 +18,8 @@ def main(request):
 
 
 def products(request, pk=None):
-    print(pk)
     links_menu = ProductCategory.objects.all()
-    print(links_menu)
+    print(links_menu[0].id)
     content = {
         'title': 'Продукты',
         'links_menu': links_menu
