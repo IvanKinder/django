@@ -20,7 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b7d697c-cc4d-42f4-9e29-cda1e77e67d9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mainapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mainapp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mainapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mainapp/templates/mainapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../mainapp/templates/mainapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mainapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +94,7 @@
       <updated>1606285662601</updated>
       <workItem from="1606285670504" duration="11898000" />
       <workItem from="1606298131143" duration="801000" />
+      <workItem from="1606461987771" duration="2000" />
     </task>
     <servers />
   </component>

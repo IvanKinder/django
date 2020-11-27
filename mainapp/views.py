@@ -1,6 +1,8 @@
 from django.shortcuts import render
 import json
 
+from mainapp.models import Product, ProductCategory
+
 CONTACTS = []
 
 for i in range(3):
@@ -8,20 +10,17 @@ for i in range(3):
         CONTACTS.append(json.load(contact_file))
 
 def main(request):
+    products = Product.objects.all()[:4]
     content = {
-        'title': 'Магазин'
+        'title': 'Главная', 'products': products
     }
     return render(request, 'mainapp/index.html', content)
 
 
-def products(request):
-    links_menu = [
-        {'href': 'products_all', 'name': 'все'},
-        {'href': 'products_home', 'name': 'дом'},
-        {'href': 'products_office', 'name': 'офис'},
-        {'href': 'products_modern', 'name': 'модерн'},
-        {'href': 'products_classic', 'name': 'классика'}
-    ]
+def products(request, pk=None):
+    print(pk)
+    links_menu = ProductCategory.objects.all()
+    print(links_menu)
     content = {
         'title': 'Продукты',
         'links_menu': links_menu
