@@ -1,0 +1,9 @@
+<ul class="links-menu">
+    {% for link in links_menu %}
+        <li>
+            <a href="/products/{{ link.id }}"
+               {% if request.resolver_match.2.pk == link.id %}class="active"{% endif %}
+            >{{ link.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
