@@ -3,28 +3,28 @@ import json
 
 from mainapp.models import Product, ProductCategory
 
-CONTACTS = []
-NAMES = []
+# CONTACTS = []
+# NAMES = []
 
-for i in range(3):
-    with open(f'mainapp/templates/mainapp/contacts_data/{i + 1}.json', 'r') as contact_file:
-        CONTACTS.append(json.load(contact_file))
+# for i in range(3):
+#     with open(f'mainapp/templates/mainapp/contacts_data/{i + 1}.json', 'r') as contact_file:
+#         CONTACTS.append(json.load(contact_file))
 
-with open('mainapp/templates/mainapp/static_db/new_product.json', 'r') as product:
-    new_product = json.load(product)
-    for value in ProductCategory.objects.values():
-        if new_product['category'] == value['name']:
-            for cat in ProductCategory.objects.all():
-                if cat.name == value['name']:
-                    category = cat
-            my_product = Product(category=category, name=new_product['name'],
-                                  image=new_product['image'], short_desc=new_product['short_desc'],
-                                  discription=new_product['discription'], price=new_product['price'],
-                                  quantity=new_product['quantity'])
-            for value in Product.objects.values():
-                NAMES.append(value['name'])
-            if my_product.name not in NAMES:
-                my_product.save()
+# with open('mainapp/templates/mainapp/static_db/new_product.json', 'r') as product:
+#     new_product = json.load(product)
+#     for value in ProductCategory.objects.values():
+#         if new_product['category'] == value['name']:
+#             for cat in ProductCategory.objects.all():
+#                 if cat.name == value['name']:
+#                     category = cat
+#             my_product = Product(category=category, name=new_product['name'],
+#                                   image=new_product['image'], short_desc=new_product['short_desc'],
+#                                   discription=new_product['discription'], price=new_product['price'],
+#                                   quantity=new_product['quantity'])
+#             for value in Product.objects.values():
+#                 NAMES.append(value['name'])
+#             if my_product.name not in NAMES:
+#                 my_product.save()
 
 
 def main(request):
@@ -48,7 +48,7 @@ def products(request, pk=None):
 def contacts(request):
     content = {
         'title': 'Контакты',
-        'contacts': CONTACTS
+        # 'contacts': CONTACTS
     }
     return render(request, 'mainapp/contact.html', content)
 
