@@ -1,6 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django import forms
-
 from authapp.models import ShopUser
 
 
@@ -31,6 +30,13 @@ class ShopUserRegisterForm(UserCreationForm):
             raise forms.ValidationError('Вы слишком молоды')
         return data
 
+    def clean_username(self):
+        data = self.cleaned_data['username']
+        if (len(data) > 2):
+            return data
+        else:
+            raise forms.ValidationError('Слишком короткое имя')
+
 
 class ShopUserEditForm(UserChangeForm):
     class Meta:
@@ -51,5 +57,10 @@ class ShopUserEditForm(UserChangeForm):
             raise forms.ValidationError('Вы слишком молоды')
         return data
 
-
+    def clean_username(self):
+        data = self.cleaned_data['username']
+        if (len(data) > 2):
+            return data
+        else:
+            raise forms.ValidationError('Слишком короткое имя')
 
