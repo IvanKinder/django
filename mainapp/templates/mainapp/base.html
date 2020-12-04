@@ -18,11 +18,18 @@
 <body>
 	<div class="container">
         {% block menu %}
+            <div class="hero-white">
+                <div class="header clearfix">
+                    <a href="/" class="logo"></a>
+                    {% include 'mainapp/includes/inc_main_menu.html' %}
+                </div>
+            </div>
         {% endblock %}
+    <div class="content">
         {% block content %}
         {% endblock %}
         <div class="clr"></div>
-
+    </div>
 	</div>
     {% block footer %}
     <div class="footer">
