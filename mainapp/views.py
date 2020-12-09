@@ -9,7 +9,8 @@ from mainapp.models import Product, ProductCategory
 def main(request):
     products = Product.objects.all()[:4]
     content = {
-        'title': 'Главная', 'products': products,
+        'title': 'Главная',
+        'products': products,
         'basket': get_basket(request.user),
     }
     return render(request, 'mainapp/index.html', content)

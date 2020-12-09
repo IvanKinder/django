@@ -28,5 +28,6 @@ def add(request, pk):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def delete(request, pk):
-    content = {}
-    return render(request, 'basketapp/basket.html', content)
+    basket_item = get_object_or_404(Basket, pk=pk)
+    basket_item.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
