@@ -4,6 +4,8 @@ from django.shortcuts import render, get_object_or_404
 
 
 # Create your views here.
+from django.urls import reverse
+
 from basketapp.models import Basket
 from mainapp.models import Product
 
@@ -20,6 +22,8 @@ def basket(request):
 
 @login_required
 def add(request, pk):
+    if 'login' in request.META.get('HTTP_REFERER'):
+        return HttpResponseRedirect(reverse('mainapp:product', args=[pk]))
     product = get_object_or_404(Product, pk=pk)
     basket_item = Basket.objects.filter(user=request.user, product=product).first()
 
