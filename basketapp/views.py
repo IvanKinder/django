@@ -8,7 +8,13 @@ from mainapp.models import Product
 
 
 def basket(request):
-    pass
+    title = 'Корзина'
+    basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
+    content = {
+        'title': title,
+        'basket_items': basket_items,
+    }
+    return render(request, 'basketapp/basket.html', content)
 
 def add(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -22,4 +28,5 @@ def add(request, pk):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def delete(request, pk):
-    pass
+    content = {}
+    return render(request, 'basketapp/basket.html', content)
