@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import render, get_object_or_404
 
 from basketapp.models import Basket
@@ -17,6 +19,14 @@ def get_basket(user):
     if user.is_authenticated:
         return Basket.objects.filter(user=user)
     return []
+
+def get_hot_product():
+    products_list = Product.objects.all()
+    return random.sample(list(products_list), 1)[0]
+
+def get_same_products(hot_product):
+    return Product.objects.filter(category__pk=hot_product.category.pk).exclude(pk=hot_product.pk)[:3]
+
 
 def products(request, pk=None):
     links_menu = ProductCategory.objects.all()
@@ -46,16 +56,26 @@ def products(request, pk=None):
             'category': category,
             # 'basket': quantity_and_price
             'basket': get_basket(request.user),
+            'hot_product': get_hot_product(),
         }
 
         return render(request, 'mainapp/products_list.html', content)
 
+    hot_product = get_hot_product()
+    same_products = get_same_products(hot_product)
+
     content = {
         'title': 'Продукты',
-        'links_menu': links_menu
+        'links_menu': links_menu,
+        'basket': get_basket(request.user),
+        'hot_product': hot_product,
+        'same_products': same_products,
     }
     return render(request, 'mainapp/products.html', content)
 
+
+def product(request, pk):
+    pass
 
 def contacts(request):
     content = {
