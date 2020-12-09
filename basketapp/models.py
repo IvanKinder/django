@@ -14,14 +14,14 @@ class Basket(models.Model):
         return self.quantity
 
     @property
-    def product_cost(self):
-        return self.product.price * self.product.quantity
-
-    @property
     def total_quantity(self):
         _items = Basket.objects.filter(user=self.user)
         _total_quantity = sum(list(map(lambda x: x.quantity, _items)))
         return _total_quantity
+
+    @property
+    def product_cost(self):
+        return self.product.price * self.quantity
 
     @property
     def total_cost(self):
