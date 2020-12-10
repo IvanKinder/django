@@ -1,6 +1,10 @@
 {% extends 'basketapp/base.html' %}
 {% load static %}
 
+<div class="h2 text-center head">
+    Ваша корзина,
+    {{ user.first_name|title }}
+</div>
 {% block content %}
     <div class="basket_list">
         {% include 'basketapp/includes/inc_basket_list.html' %}
