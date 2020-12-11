@@ -13,18 +13,17 @@ window.onload = function () {
         event.preventDefault();
     });
 
-    // $('.btn-delete').on('click', function () {
-    //     let t_href = event.target;
-    //     // alert(t_href.parentElement.className);
-    //     // alert((t_href.className));
-    //    $.ajax({
-    //        url: "/basket/delete/" + t_href.name,
-    //
-    //        // success: function (data) {
-    //        //     $('.basket_list').html((data.result));
-    //        // },
-    //    });
-    //
-    //    // event.preventDefault();
-    // });
-}
+    $('.basket_list').on('click', '.button-remove', function () {
+        let pk = $(this).attr('data-pk');
+        if(pk){
+            $.ajax({
+                url: "/basket/remove/ajax/" + pk + "/",
+
+                success: function (data) {
+                    $('.basket_list').html(data.result);
+                }
+            })
+        }
+        return;
+    });
+};
