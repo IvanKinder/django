@@ -1,5 +1,4 @@
 {% extends 'adminapp/base.html' %}
-{% load static %}
 
 {% block content %}
   <div class="users_list">
@@ -9,8 +8,7 @@
       </a>
     </button>
     {% for object in objects %}
-      <div
-       class="user_record {% if not object.is_active %}not_active{% endif %}">
+      <div class="user_record {% if not object.is_active %}not_active{% endif %}">
         <img
           src="/media/{{ object.avatar|default:'users_avatars/default.jpg' }}"
           alt="{{ object.username }}">
@@ -27,20 +25,24 @@
           </button>
           <button>
             <a href={% url 'admin:user_delete' object.pk %}>
-              удалить
+                {% if object.is_active %}
+                    удалить
+                {% else %}
+                    восстановить
+                {% endif %}
             </a>
           </button>
         </div>
         <div class="user_name">
           <p><strong>{{ object.username }}</strong></p>
-	    <p>
-            {% if object.first_name %}
-              <b>{{ object.first_name|title }}</b>
-                {% if object.last_name %}
-                  <p>{{ object.last_name|title }}</p>
+	        <p>
+                {% if object.first_name %}
+                  <b>{{ object.first_name|title }}</b>
+                    {% if object.last_name %}
+                      <p>{{ object.last_name|title }}</p>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-          </p>
+            </p>
         </div>
         <div class="user_age">
           age:<br>
