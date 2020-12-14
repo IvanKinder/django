@@ -9,9 +9,10 @@ from authapp.models import ShopUser
 
 
 # Users
-from mainapp.models import ProductCategory
+from mainapp.models import ProductCategory, Product
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def user_create(request):
     if request.method == 'POST':
         user_form = ShopUserRegisterForm(request.POST, request.FILES)
@@ -38,6 +39,7 @@ def users(request):
     return render(request, 'adminapp/users.html', content)
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def user_update(request, pk):
     edit_user = get_object_or_404(ShopUser, pk=pk)
     if request.method == 'POST':
@@ -55,6 +57,7 @@ def user_update(request, pk):
     return render(request, 'adminapp/user_update.html', content)
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def user_delete(request, pk):
     user_item = get_object_or_404(ShopUser, pk=pk)
 
@@ -73,43 +76,59 @@ def user_delete(request, pk):
 
 # Categories
 
+@user_passes_test(lambda u: u.is_superuser)
 def category_create(request):
     pass
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def categories(request):
     categories_list = ProductCategory.objects.all().order_by('is_active')
     content = {
         'objects': categories_list
     }
 
-    return render(request, '', content)
+    return render(request, 'adminapp/categories.html', content)
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def category_update(request, pk):
     pass
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def category_delete(request, pk):
     pass
 
 # Products
 
+@user_passes_test(lambda u: u.is_superuser)
 def product_create(request, pk):
     pass
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def products(request, pk):
-    pass
+    category_item = get_object_or_404(ProductCategory, pk=pk)
+    products_list = Product.objects.filter(category=category_item)
 
+    content = {
+        'objects': products_list,
+        'category': category_item
+    }
 
+    return render(request, 'adminapp/products.html', content)
+
+@user_passes_test(lambda u: u.is_superuser)
 def product_read(request, pk):
     pass
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def product_update(request, pk):
     pass
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def product_delete(request, pk):
     pass
