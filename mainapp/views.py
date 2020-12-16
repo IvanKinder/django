@@ -1,5 +1,6 @@
 import random
 
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 
 from basketapp.models import Basket
@@ -29,17 +30,8 @@ def get_same_products(hot_product):
     return Product.objects.filter(category__pk=hot_product.category.pk).exclude(pk=hot_product.pk)[:3]
 
 
-def products(request, pk=None):
+def products(request, pk=None, page=1):
     links_menu = ProductCategory.objects.all()
-    # quantity_and_price = []
-    # if request.user.is_authenticated:
-    #     all_products = 0
-    #     all_price = 0
-    #     for basket in Basket.objects.filter(user=request.user):
-    #         all_products += basket.count()
-    #         all_price += basket.count() * basket.product.price
-    #     quantity_and_price.append(all_products)
-    #     quantity_and_price.append(all_price)
 
     if pk is not None:
         if pk == 0:
@@ -50,10 +42,18 @@ def products(request, pk=None):
             category = get_object_or_404(ProductCategory, pk=pk)
             products_list = Product.objects.filter(category__pk=pk)
 
+        paginator = Paginator(products_list, 2)
+        try:
+            products_paginator = paginator.page(page)
+        except PageNotAnInteger:
+            products_paginator = paginator.page(1)
+        except EmptyPage:
+            products_paginator = paginator.page(paginator.num_pages)
+
         content = {
             'title': 'Продукты',
             'links_menu': links_menu,
-            'products': products_list,
+            'products': products_paginator,
             'category': category,
             # 'basket': quantity_and_price
             'basket': get_basket(request.user),
