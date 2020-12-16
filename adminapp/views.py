@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
-from adminapp.forms import ShopUserAdminEditForm, ProductCategoryEditForm
+from adminapp.forms import ShopUserAdminEditForm, ProductCategoryEditForm, ProductEditForm
 from authapp.forms import ShopUserRegisterForm
 from authapp.models import ShopUser
 
@@ -141,7 +141,22 @@ def category_delete(request, pk):
 
 @user_passes_test(lambda u: u.is_superuser)
 def product_create(request, pk):
-    pass
+    category_item = get_object_or_404(ProductCategory, pk=pk)
+
+    if request.method == 'POST':
+        update_form = ProductEditForm(request.POST, request.FILES)
+        if update_form.is_valid():
+            update_form.save()
+            return HttpResponseRedirect(reverse('adminapp:products', args=[pk]))
+    else:
+        update_form = ProductEditForm()
+
+    content = {
+        'update_form': update_form,
+        'category': category_item
+    }
+
+    return render(request, 'adminapp/product_update.html', content)
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -158,14 +173,46 @@ def products(request, pk):
 
 @user_passes_test(lambda u: u.is_superuser)
 def product_read(request, pk):
-    pass
+    product_item = get_object_or_404(Product, pk=pk)
+    content = {
+        'object': product_item
+    }
+    return render(request, 'adminapp/product_read.html', content)
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def product_update(request, pk):
-    pass
+    product_item = get_object_or_404(Product, pk=pk)
+
+    if request.method == 'POST':
+        update_form = ProductEditForm(request.POST, request.FILES, instance=product_item)
+        if update_form.is_valid():
+            update_form.save()
+            return HttpResponseRedirect(reverse('adminapp:products', args=[pk]))
+    else:
+        update_form = ProductEditForm(instance=product_item)
+
+    content = {
+        'update_form': update_form,
+        'category': product_item.category
+    }
+
+    return render(request, 'adminapp/product_update.html', content)
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def product_delete(request, pk):
-    pass
+    product_item = get_object_or_404(Product, pk=pk)
+
+    if request.method == 'POST':
+        if product_item.is_active:
+            product_item.is_active = False
+        else:
+            product_item.is_active = True
+        product_item.save()
+        return HttpResponseRedirect(reverse('admin:products', args=[product_item.category_id]))
+
+    content = {
+        'product_to_delete': product_item
+    }
+    return render(request, 'adminapp/product_delete.html', content)
